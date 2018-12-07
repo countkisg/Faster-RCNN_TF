@@ -1,3 +1,10 @@
+# Moidfy by self
+
+For tensorflow version 1.4, you need modify make.sh file. 
+The revised is below:
+g++ -std=c++11 -shared -o roi_pooling.so roi_pooling_op.cc \
+                roi_pooling_op.cu.o -I $TF_INC -I $TF_INC/external/nsync/public -D GOOGLE_CUDA=1 -fPIC $CXXFLAGS \
+                -lcudart -L $CUDA_PATH/lib64
 # Faster-RCNN_TF
 
 This is an experimental Tensorflow implementation of Faster RCNN - a convnet for object detection with a region proposal network.
