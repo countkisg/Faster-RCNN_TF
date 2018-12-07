@@ -1,4 +1,4 @@
-# Moidfy by self
+# Modify by self
 
 For tensorflow version 1.4, you need modify make.sh file. 
 The revised is below:
