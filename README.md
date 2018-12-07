@@ -1,10 +1,19 @@
 # Modify by self
 
-For tensorflow version 1.4, you need modify make.sh file. 
-The revised is below:
-g++ -std=c++11 -shared -o roi_pooling.so roi_pooling_op.cc \
+For tensorflow version 1.4, you need modify make.sh file, due to the problem '22: fatal error: nsync_cv.h: No such file or directory'.
+The revised is from
+	```Shell
+	g++ -std=c++11 -shared -o roi_pooling.so roi_pooling_op.cc \
+                roi_pooling_op.cu.o -I $TF_INC -D GOOGLE_CUDA=1 -fPIC $CXXFLAGS \
+                -lcudart -L $CUDA_PATH/lib64	
+	```
+to:
+	```Shell
+	g++ -std=c++11 -shared -o roi_pooling.so roi_pooling_op.cc \
                 roi_pooling_op.cu.o -I $TF_INC -I $TF_INC/external/nsync/public -D GOOGLE_CUDA=1 -fPIC $CXXFLAGS \
-                -lcudart -L $CUDA_PATH/lib64
+                -lcudart -L $CUDA_PATH/lib64	
+	```
+
 # Faster-RCNN_TF
 
 This is an experimental Tensorflow implementation of Faster RCNN - a convnet for object detection with a region proposal network.
